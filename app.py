@@ -22,12 +22,7 @@ st.title("Dashboard")
 st.success(f"Welcome, {name}!")
 
 
-st.set_page_config(
-    page_title="My Multipage App",
-    page_icon="🧭",
-    layout="wide",
-    #initial_sidebar_state="expanded",
-)
+
 
 
 # --- Home content ---
@@ -50,7 +45,5 @@ with c1:
     st.page_link("pages/exp1.py")
 with c2:
     st.page_link("pages/exp2.py")
-
-st.info("Tip: You can also navigate using the sidebar.")
 
 
