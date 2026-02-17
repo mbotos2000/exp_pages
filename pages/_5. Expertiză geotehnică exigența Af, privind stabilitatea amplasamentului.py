@@ -120,7 +120,7 @@ st.set_page_config(page_title="Exp_oferte",
 for key in ["val_inc_nd","nr_contract","data_contract","beneficiar","cerere","numec","val_ET","ore_et","tarif_et","zimax_et","zimin_et",
     "val_a_3d","val_a_rel","zimax_a","zimin_a","zimax_IND","zimin_IND","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
     "zimax_geo","zimin_geo","val_et_finisaje","val_rel_struct","val_et_actualizat","zimin_rel","zimax_et_rel","termen_predare","termen_val","semnatura",
-		   "total1","total2","total","adresant","mobilizare","constructie&adresa","gen",'den_obiectiv','adresa']:
+		   "total1","total2","total","adresant","mobilizare","constructie&adresa","gen",'den_obiectiv','adresa','documente']:
     st.session_state.setdefault(key, '')
 for key in ["val_inc_nd","val_ET","val_a_3d","val_a_rel","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
     "val_et_finisaje","val_rel_struct","val_et_actualizat","total1","total2","total"]:
@@ -143,15 +143,6 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
 
   st.title("Generare oferta")
   st.write('{:%d-%b-%Y}'.format(date.today()))
-  optiuni = ["1.Expertiză tehnică completa", 
-			 "2.Expertiză tehnică exigența A1/A2 ",
-			 "3.Expertiză tehnică exigența A1/A2, privind intrarea în legalitate a lucrărilor executate",
-			 "4.Expertiză geotehnică exigența Af ",
-			 "5. Expertiză geotehnică exigența Af, privind stabilitatea amplasamentului",
-			 "6. Expertize tehnice de vecinătăți privind cerințele de proiectare, execuție și monitorizare a excavațiilor adânci",
-			 "7. Servicii de scanare laser – achiziție de date și generare a norului de puncte"]
-  option = st.selectbox("Ce oferta doresti sa completezi?",optiuni,index=None, placeholder="Selecteaza un tip de oferta")
-
   with st.form('Inregistrare cerere'):
     st.header('Inregistrare cerere')
     if st.session_state.step >= 1:
@@ -189,9 +180,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 options = ["- Ridicare topografică format electronic;","- Studiu geotehnic care să conțină caracteristicile geotehnice ale terenului – conform normelor legale în vigoare - NP 074-2022; ","- Propunere arhitectură (plan sistematizare, plan de situație, plan parter, secțiuni arhitectură);","- Propunere sistem de fundații."]
                 selected = st.multiselect(
                              "Ce va contine documentatia?",
-                              options,default=options, key='documente')
+                              options,default=options)
                 st.write("Ai selectat:", selected)
-
+                st.session_state.documente="\n".join(selected)
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
                 try:
                  st.text_area('Valoare expertiza geotehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
@@ -213,7 +204,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                     "ore_et","tarif_et",
 					 "zimax_et","zimin_et","zimax_a","zimin_a","zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_et_rel","zimax_rel","zimin_et_rel",
                      "termen_predare","termen_val","semnatura",
-					 "total1","total2","total", "adresant",'gen','den_obiectiv']
+					 "total1","total2","total", "adresant",'gen','den_obiectiv','documente']
 
       document=MailMerge(template)
       for key in keys_to_merge:
