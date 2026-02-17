@@ -1,0 +1,7 @@
+docx2python
+docx_mailmerge
+docx_mailmerge2
+pandas
+protobuf==3.20.0
+streamlit
+openpyxl
