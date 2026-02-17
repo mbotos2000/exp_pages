@@ -138,7 +138,7 @@ if st.button("Nu am oferta in excell!"):
 if st.session_state['file']!=None or st.session_state['cond']!=None:
   if st.session_state['file']:
         df = pd.read_excel(st.session_state['file'], header=None)
-        st.dataframe(df)
+        #st.dataframe(df)
         st.success("Datele au fost citite din fisierul excell!")
 
   st.title("Generare oferta")
