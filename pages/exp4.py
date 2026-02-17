@@ -143,14 +143,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
 
   st.title("Generare oferta")
   st.write('{:%d-%b-%Y}'.format(date.today()))
-  optiuni = ["1.Expertiză tehnică completa", 
-			 "2.Expertiză tehnică exigența A1/A2 ",
-			 "3.Expertiză tehnică exigența A1/A2, privind intrarea în legalitate a lucrărilor executate",
-			 "4.Expertiză geotehnică exigența Af ",
-			 "5. Expertiză geotehnică exigența Af, privind stabilitatea amplasamentului",
-			 "6. Expertize tehnice de vecinătăți privind cerințele de proiectare, execuție și monitorizare a excavațiilor adânci",
-			 "7. Servicii de scanare laser – achiziție de date și generare a norului de puncte"]
-  option = st.selectbox("Ce oferta doresti sa completezi?",optiuni,index=None, placeholder="Selecteaza un tip de oferta")
+  
 
   with st.form('Inregistrare cerere'):
     st.header('Inregistrare cerere')
@@ -183,8 +176,8 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
 							 placeholder="Selecteaza din lista sau adauga persoana care va semna oferta",accept_new_options=True)
                 st.session_state['semnatura']=d
     
-    if (st.session_state.step >= 3)&(option==optiuni[3]):
-                st.write('Expertiză geotehnica')
+    if (st.session_state.step >= 3):
+                st.write('Expertiză geotehnică exigența Af')
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
                 try:
                  st.text_area('Valoare expertiza geotehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
@@ -200,7 +193,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.selectbox('Termen valabilitate',range(1, 60),index=8, key='termen_val')
     
     
-    if (st.session_state.step >= 4)&(option==optiuni[3]):	
+    if (st.session_state.step >= 4):	
       _,_,_,template,_,_,_=load_ftp_file()	  
       keys_to_merge=["val_inc_nd","val_ET","val_bet","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
                     "nr_contract","data_contract","beneficiar","cerere","numec",
