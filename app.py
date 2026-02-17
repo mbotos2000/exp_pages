@@ -26,21 +26,21 @@ st.set_page_config(
     page_title="My Multipage App",
     page_icon="🧭",
     layout="wide",
-    initial_sidebar_state="expanded",
+    #initial_sidebar_state="expanded",
 )
 
 # --- Sidebar / Branding ---
-with st.sidebar:
+#with st.sidebar:
     #st.image("assets/logo.png", width=160, caption="Company")
-    st.markdown("---")
-    st.write("Navigate using the sidebar pages.")
-    st.markdown(
+#    st.markdown("---")
+#    st.write("Navigate using the sidebar pages.")
+#    st.markdown(
         """
         **Quick links**
         - ./Upload_CSV
         - ./Dashboard
         """
-    )
+  #  )
 
 # --- Home content ---
 st.title("🧭 Welcome")
