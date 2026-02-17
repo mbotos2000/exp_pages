@@ -29,18 +29,6 @@ st.set_page_config(
     #initial_sidebar_state="expanded",
 )
 
-# --- Sidebar / Branding ---
-#with st.sidebar:
-    #st.image("assets/logo.png", width=160, caption="Company")
-#    st.markdown("---")
-#    st.write("Navigate using the sidebar pages.")
-#    st.markdown(
-        """
-        **Quick links**
-        - ./Upload_CSV
-        - ./Dashboard
-        """
-  #  )
 
 # --- Home content ---
 st.title("🧭 Welcome")
