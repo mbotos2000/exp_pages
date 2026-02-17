@@ -185,6 +185,13 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     
     if (st.session_state.step >= 3):
                 st.write('Expertiză geotehnica stabilitate')
+		
+                options = ["- Ridicare topografică format electronic;","- Studiu geotehnic care să conțină caracteristicile geotehnice ale terenului – conform normelor legale în vigoare - NP 074-2022; ","- Propunere arhitectură (plan sistematizare, plan de situație, plan parter, secțiuni arhitectură);","- Propunere sistem de fundații."]
+                selected = st.multiselect(
+                             "Ce va contine documentatia?",
+                              options,default=options, key='documente')
+                st.write("Ai selectat:", selected)
+
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
                 try:
                  st.text_area('Valoare expertiza geotehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
