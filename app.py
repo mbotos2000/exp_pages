@@ -59,9 +59,9 @@ st.write(
 
 c1, c2, c3 = st.columns([1, 1, 4])
 with c1:
-    st.page_link("pages/1_📤_Upload_CSV.py", label="Go to Upload CSV", icon="📤")
+    st.page_link("pages/exp1.py")
 with c2:
-    st.page_link("pages/2_📊_Dashboard.py", label="Go to Dashboard", icon="📊")
+    st.page_link("pages/exp2.py")
 
 st.info("Tip: You can also navigate using the sidebar.")
 
