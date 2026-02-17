@@ -178,6 +178,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 3):
                 st.write(' Expertiză tehnică exigența A1/A2')
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
+                st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')
                 try:
                  st.text_area('Valoare expertiza tehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
                 except:
