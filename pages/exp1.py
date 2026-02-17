@@ -67,7 +67,7 @@ def load_ftp_file():
     
     # Download DOCX templates
     docx_files = {}
-    for filename in ["template.docx","template1.docx","template2.docx","template3.docx","template4.docx","template5.docx","template6.docx"]:
+    for filename in ["template.docx"]:
         file_data = BytesIO()
         ftp_server.retrbinary(f"RETR {filename}", file_data.write)
         file_data.seek(0)  # Reset file pointer to the start
@@ -76,8 +76,7 @@ def load_ftp_file():
     ftp_server.quit()
 
     # Return downloaded files
-    return 
-        docx_files["template.docx"]
+    return docx_files["template.docx"]
 # Use a session state flag to control cache invalidation
 name, user = require_login("🔐 App Login")
 st.title("Dashboard")
