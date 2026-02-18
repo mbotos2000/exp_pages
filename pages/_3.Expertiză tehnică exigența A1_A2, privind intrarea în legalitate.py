@@ -206,7 +206,8 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.selectbox('Termen valabilitate',range(1, 60),index=8, key='termen_val')
     
     if (st.session_state.step >= 4):	
-      _,_,template,_,_,_,_=load_ftp_file()	  
+      _,_,template,_,_,_,_=load_ftp_file()	 
+      st.session_state["val_ET"]=format_number(aa)
       keys_to_merge=["val_ET",
                     "nr_contract","data_contract","beneficiar","cerere","numec",                 
 					 "zimax_et","zimin_et",
