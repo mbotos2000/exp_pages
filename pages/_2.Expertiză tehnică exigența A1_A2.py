@@ -16,7 +16,26 @@ import string
 from auth_simple import require_login
 import hashlib
 import time
+def format_number(value: str) -> str:
+    # 1. Trim spaces
+    v = value.strip()
 
+    # 2. Normalize decimal separator → use dot internally
+    v = v.replace(',', '.')
+
+    # 3. Convert to float
+    num = float(v)
+
+    # 4. Format with thousands separator and 2 decimals
+    #    This creates: x,xxx,xxx.xx
+    formatted = f"{num:,.2f}"
+
+    # 5. Convert to European style: x.xxx.xxx,xx
+    formatted = formatted.replace(",", "X")   # temporary
+    formatted = formatted.replace(".", ",")   # dot → comma for decimals
+    formatted = formatted.replace("X", ".")   # thousands separator
+
+    return formatted
 def _hash(pwd: str) -> str:
     return hashlib.sha256(pwd.encode("utf-8")).hexdigest()
 
@@ -177,7 +196,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
                 st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')
                 try:
-                 st.text_area('Valoare expertiza tehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
+                 st.text_area('Valoare expertiza tehnica',value=df.iloc[113, 8], key='val_ET')
                 except:
                  st.text_area('Valoare expertiza tehnica', value="0.0", key='val_ET')                
                 colA, colB = st.columns(2)
@@ -189,7 +208,8 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  st.selectbox('Nu mai putin de: ',range(1, int(st.session_state['zimax_et'])-1),key='zimin_et')
    
     if (st.session_state.step >= 4):	
-      _,template,_,_,_,_,_=load_ftp_file()	  
+      _,template,_,_,_,_,_=load_ftp_file()	
+      st.session_state["val_ET"]=format_number(st.session_state["val_ET"])
       keys_to_merge=["val_ET",
                     "nr_contract","data_contract","beneficiar","cerere","numec",                 
 					 "zimax_et","zimin_et",
