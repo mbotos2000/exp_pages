@@ -117,19 +117,16 @@ st.set_page_config(page_title="Exp_oferte",
     page_icon="🧭",
     layout="wide")
 
-for key in ["val_inc_nd","nr_contract","data_contract","beneficiar","cerere","numec","val_ET","ore_et","tarif_et","zimax_et","zimin_et",
-    "val_a_3d","val_a_rel","zimax_a","zimin_a","zimax_IND","zimin_IND","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
-    "zimax_geo","zimin_geo","val_et_finisaje","val_rel_struct","val_et_actualizat","zimin_rel","zimax_et_rel","termen_predare","termen_val","semnatura",
-		   "total1","total2","total","adresant","mobilizare","constructie&adresa","gen",'den_obiectiv','adresa']:
+for key in ["nr_contract","data_contract","beneficiar","cerere","numec","val_ET","zimax_et","zimin_et",
+           "termen_predare","termen_val","semnatura",
+		   "adresant","constructie&adresa","gen",'den_obiectiv','adresa']:
     st.session_state.setdefault(key, '')
-for key in ["val_inc_nd","val_ET","val_a_3d","val_a_rel","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
-    "val_et_finisaje","val_rel_struct","val_et_actualizat","total1","total2","total"]:
+for key in ["val_ET"]:
     st.session_state.setdefault(key, 0.0)
-for key in ["zimax_et","zimin_et","zimax_a","zimin_a",
-    "zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_rel","zimin_et_rel","zimax_et_rel","nr_cladiri"]:
+for key in ["zimax_et","zimin_et","nr_cladiri"]:
     st.session_state.setdefault(key, int(60.0))
 keys_none=['cap2','cap3','cap4','resetare' ,'file','cond',"1_1","2_1","3_1","4_1","5_1"]
-st.session_state["val_dezv_8"]="0.00"
+
 for key in keys_none:
     st.session_state.setdefault(key, None)
 st.session_state['file'] = st.file_uploader("Incarca centralizatorul in excel", type="xlsx")
@@ -194,13 +191,11 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     
     if (st.session_state.step >= 4):	
       _,_,_,_,_,template,_=load_ftp_file()	  
-      keys_to_merge=["val_inc_nd","val_ET","val_bet","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
-                    "nr_contract","data_contract","beneficiar","cerere","numec",
-                    "ore_et","tarif_et",
-					 "zimax_et","zimin_et","zimax_a","zimin_a","zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_et_rel","zimax_rel","zimin_et_rel",
+      keys_to_merge=["val_ET",
+                    "nr_contract","data_contract","beneficiar","cerere","numec",                 
+					 "zimax_et","zimin_et",
                      "termen_predare","termen_val","semnatura",
-					 "total1","total2","total", "adresant",'gen',"nr_cladiri","adresa",'den_obiectiv']
-
+					 "adresant",'gen','den_obiectiv']
       document=MailMerge(template)
       for key in keys_to_merge:
                     document.merge(**{key: st.session_state[key]})
