@@ -194,9 +194,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.text_area('Adresa pentru expertiza', key='adresa')
                 st.selectbox('Numar cladiri din vecinatate pentru care se face expertiza: ',range(1, 10),key='nr_cladiri')
                 try:
-                 st.text_area('Valoare expertiza vecinatati',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
+                 aa=st.text_area('Valoare expertiza vecinatati',value=df.iloc[113, 8])
                 except:
-                 st.text_area('Valoare expertiza vecinatati', value=0.0, key='val_ET')                
+                 aa=st.text_area('Valoare expertiza vecinatati', value="0")                
                 colA, colB = st.columns(2)
                 with colA:
                  st.text_area('Numar ore necesar verificare',value="8",key='ore_et')
@@ -207,7 +207,8 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.selectbox('Termen valabilitate',range(1, 60),index=8, key='termen_val')
     
     if (st.session_state.step >= 4):	
-      _,_,_,_,_,template,_=load_ftp_file()	  
+      _,_,_,_,_,template,_=load_ftp_file()
+      st.session_state["val_ET"]=format_number(aa)
       keys_to_merge=["val_ET",
                     "nr_contract","data_contract","beneficiar","cerere","numec",                 
 					 "zimax_et","zimin_et",
