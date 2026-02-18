@@ -126,7 +126,7 @@ for key in ["val_ET"]:
 for key in ["zimax_et","zimin_et","nr_cladiri"]:
     st.session_state.setdefault(key, int(60.0))
 keys_none=['cap2','cap3','cap4','resetare' ,'file','cond',"1_1","2_1","3_1","4_1","5_1"]
-st.session_state["val_dezv_8"]="0.00"
+
 for key in keys_none:
     st.session_state.setdefault(key, None)
 st.session_state['file'] = st.file_uploader("Incarca centralizatorul in excel", type="xlsx")
