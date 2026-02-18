@@ -193,9 +193,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.write('Expertiză tehnică pentru intrare in legalitate')
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
                 try:
-                 st.text_area('Valoare expertiza tehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
+                 aa=st.text_area('Valoare expertiza tehnica',value=df.iloc[113, 8])
                 except:
-                 st.text_area('Valoare expertiza tehnica', value=0.0, key='val_ET')                
+                 aa=st.text_area('Valoare expertiza tehnica', value="0")                
                 colA, colB = st.columns(2)
                 with colA:
                  st.text_area('Numar ore necesar verificare',value="8",key='ore_et')
