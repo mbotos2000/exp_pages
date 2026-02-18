@@ -51,9 +51,26 @@ def require_login(title="Login"):
 
     st.stop()
 
-def float_to_eu(value: float) -> str:
-    formatted = f"{value:,.2f}"
-    return formatted.replace(",", "X").replace(".", ",").replace("X", ".")
+def format_number(value: str) -> str:
+    # 1. Trim spaces
+    v = value.strip()
+
+    # 2. Normalize decimal separator → use dot internally
+    v = v.replace(',', '.')
+
+    # 3. Convert to float
+    num = float(v)
+
+    # 4. Format with thousands separator and 2 decimals
+    #    This creates: x,xxx,xxx.xx
+    formatted = f"{num:,.2f}"
+
+    # 5. Convert to European style: x.xxx.xxx,xx
+    formatted = formatted.replace(",", "X")   # temporary
+    formatted = formatted.replace(".", ",")   # dot → comma for decimals
+    formatted = formatted.replace("X", ".")   # thousands separator
+
+    return formatted
 def load_ftp_file():
     # Establish FTP connection
     #ftp_server = ftplib.FTP("users.utcluj.ro", st.secrets['u'], st.secrets['p'])
