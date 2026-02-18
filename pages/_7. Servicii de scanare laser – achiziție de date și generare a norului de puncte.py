@@ -198,13 +198,13 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 col1, col2, col3 = st.columns(3)
                 with col1:
                  try:
-                  st.text_area('Mobilizare si deplasare la obiectiv: ',value=str(format_eu_number(df.iloc[115, 8])), key='mobilizare')
+                  aa=st.text_area('Mobilizare si deplasare la obiectiv: ',value=df.iloc[115, 8])
                  except:
-                  st.text_area('Mobilizare si deplasare la obiectiv: ',  value=0.0,key='mobilizare')
+                  aa=st.text_area('Mobilizare si deplasare la obiectiv: ',  value="0")
                  try:
-                  st.text_area('Scan 3D și generare nor de puncte: ',value=str(format_eu_number(df.iloc[115, 8])), key='val_a_3d')
+                  bb=st.text_area('Scan 3D și generare nor de puncte: ',value=df.iloc[115, 8])
                  except:
-                  st.text_area('Scan 3D și generare nor de puncte: ',  value=0.0,key='val_a_3d')
+                  bb=st.text_area('Scan 3D și generare nor de puncte: ',  value="0")
                 with col2:            
                  st.selectbox('Durata de realizare a norului de puncte: ',range(1, 60),index=25,key='zimax_a')
                 with col3:            
@@ -224,12 +224,13 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     
     if (st.session_state.step >= 4)&(st.session_state['1_1']!=None):	
       _,_,_,_,_,_,template=load_ftp_file()
-
+      st.session_state["mobilizare"]=format_number(aa)
+      st.session_state['val_a_3d']=format_number(bb)
       for idx, row in enumerate(inputs):
         r_c1=row["c1"]
         r_c2=row["c2"]
-        r_c3=str(row["c3"])
-        r_c4=str(row["c4"])
+        r_c3=format_number(row["c3"])
+        r_c4=format_number(row["c4"])
         st.session_state.cap3i+=f"3.{idx+1} Elaborare releveu {r_c1} - {r_c2} RON + TVA;\n"
         st.session_state.note+= f"Termenul de elaborare pentru releveu {r_c1} este de maxim {r_c3} zile lucrătoare de la semnarea contractului și plata ratei 1, dar nu mai puțin de {r_c4} zile lucrătoare de la generarea norului de puncte.\n"
         
