@@ -194,11 +194,17 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 3):
                 st.write(' Expertiză tehnică exigența A1/A2')
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
-                st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')
+                options = ["−	Planuri și secțiuni existente (releveu structural) și propuse;","−	Studiu geotehnic care să conțină caracteristicile geotehnice ale terenului și date despre fundațiile existente prin dezvelirea fundațiilor – conform normelor legale în vigoare - NP 074-2022; Realizarea dezvelirilor nu face obiectul prezentei oferte și intră în sarcina beneficiarului;","−	Cartea Tehnică a construcției (documentație tehnică de proiectare și execuție). Alternativ, în funcție de calitatea și cantitatea documentației tehnice disponibile, este posibil să fie necesare investigații prin sondaje la elementele construcției. Pozițiile și numărul sondajelor necesare se vor stabili în urma inspecției tehnice a obiectivului. Realizarea sondajelor nu face obiectul prezentei oferte și intră în sarcina beneficiarului"]
+                selected = st.multiselect(
+                             "Ce va contine documentatia?",
+                              options,default=options)
+                st.write("Ai selectat:", selected)
+                st.session_state.documente="\n".join(selected)
                 try:
                  aa=st.text_area('Valoare expertiza tehnica',value=df.iloc[113, 8])
                 except:
                  aa=st.text_area('Valoare expertiza tehnica', value="0.0")                
+                st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')
                 colA, colB = st.columns(2)
                 with colA:
                  st.text_area('Numar ore necesar verificare',value="8",key='ore_et')
