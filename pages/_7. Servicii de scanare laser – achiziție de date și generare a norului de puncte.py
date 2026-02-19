@@ -230,7 +230,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
         r_c1=row["c1"]
         r_c2=format_number(str(row["c2"]))
         r_c3=row["c3"]       
-		r_c4=row["c4"]
+        r_c4=row["c4"]
 		st.session_state.cap3i+=f"3.{idx+1} Elaborare releveu {r_c1} - {r_c2} RON + TVA;\n"
         st.session_state.note+= f"Termenul de elaborare pentru releveu {r_c1} este de maxim {r_c3} zile lucrătoare de la semnarea contractului și plata ratei 1, dar nu mai puțin de {r_c4} zile lucrătoare de la generarea norului de puncte.\n"
         
