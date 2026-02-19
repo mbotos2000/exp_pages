@@ -218,7 +218,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                     "nr_contract","data_contract","beneficiar","cerere","numec",                 
 					 "zimax_et","zimin_et",
                      "termen_predare","termen_val","semnatura",
-					 "adresant",'gen','den_obiectiv']
+					 "adresant",'gen','den_obiectiv',"documente"]
 
       document=MailMerge(template)
       for key in keys_to_merge:
