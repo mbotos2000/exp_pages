@@ -171,7 +171,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
           st.session_state['data_contract']=str(d_com)     
 			
     if st.session_state.step >= 2:
-                st.write('Date despre beneficiar si cererea depusa:')
+                st.write('Date despre compania si cererea depusa:')
                 try:
                  st.text_area('Compania: ',value=df.iloc[0, 0],key='beneficiar')
                 except:
@@ -183,9 +183,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 except:
                  st.text_area('Persoana careia ii este adresata oferta',key='adresant')
                 try:
-                 st.text_area('Denumire contract',value=df.iloc[1, 0],key='numec')
+                 st.text_area('Obiect oferta',value=df.iloc[1, 0],key='numec')
                 except:
-                 st.text_area('Denumire contract',key='numec')
+                 st.text_area('Obiect oferta',key='numec')
                 d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan"],
 							 placeholder="Selecteaza din lista sau adauga persoana care va semna oferta",accept_new_options=True)
                 st.session_state['semnatura']=d
