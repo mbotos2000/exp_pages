@@ -172,16 +172,16 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
 			
     if st.session_state.step >= 2:
                 st.write('Date despre beneficiar si cererea depusa:')
+                try:
+                 st.text_area('Compania: ',value=df.iloc[0, 0],key='beneficiar')
+                except:
+                 st.text_area('Compania: ',key='beneficiar')
                 g=st.selectbox("Domnului sau doamnei?",["","d-nei","d-lui"])
-                st.session_state['gen']=g		
+                st.session_state['gen']=g
                 try:
                  st.text_area('Persoana careia ii este adresata oferta',value=df.iloc[2, 0],key='adresant')
                 except:
                  st.text_area('Persoana careia ii este adresata oferta',key='adresant')
-                try:
-                 st.text_area('Beneficiar',value=df.iloc[0, 0],key='beneficiar')
-                except:
-                 st.text_area('Beneficiar',key='beneficiar')
                 try:
                  st.text_area('Denumire contract',value=df.iloc[1, 0],key='numec')
                 except:
