@@ -58,7 +58,7 @@ def load_ftp_file():
         docx_files[filename] = file_data
     # Close FTP connection
     ftp_server.quit()
-
+    st.session_state.step = 1
     # Return downloaded files
     return ( 
         docx_files["template.docx"],
