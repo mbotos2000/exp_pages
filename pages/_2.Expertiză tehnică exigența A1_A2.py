@@ -14,8 +14,7 @@ from difflib import get_close_matches
 import pickle
 import string
 from auth_simple import require_login
-import hashlib
-import time
+
 def format_number(value: str) -> str:
     # 1. Trim spaces
     v = value.strip()
