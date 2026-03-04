@@ -14,43 +14,6 @@ from difflib import get_close_matches
 import pickle
 import string
 from auth_simple import require_login
-import hashlib
-import time
-
-def _hash(pwd: str) -> str:
-    return hashlib.sha256(pwd.encode("utf-8")).hexdigest()
-
-def _get_users():
-    try:
-        return st.secrets["users"]
-    except Exception:
-        return {}
-
-def require_login(title="Login"):
-    st.title(title)
-    if "auth" not in st.session_state:
-        st.session_state.auth = {"ok": False, "user": None, "name": None, "time": None}
-
-    if st.session_state.auth["ok"]:
-        with st.sidebar:
-            if st.button("Logout"):
-                st.session_state.auth = {"ok": False, "user": None, "name": None, "time": None}
-                st.rerun()
-        return st.session_state.auth["name"], st.session_state.auth["user"]
-
-    users = _get_users()
-    u = st.text_input("Username")
-    p = st.text_input("Password", type="password")
-    if st.button("Login"):
-        if u in users and _hash(p) == users[u]["hash"]:
-            st.session_state.auth = {"ok": True, "user": u, "name": users[u]["name"], "time": time.time()}
-            st.rerun()
-        else:
-            st.error("Invalid username or password")
-            st.stop()
-
-    st.stop()
-
 def float_to_eu(value: float) -> str:
     formatted = f"{value:,.2f}"
     return formatted.replace(",", "X").replace(".", ",").replace("X", ".")
@@ -74,7 +37,7 @@ def load_ftp_file():
         docx_files[filename] = file_data
     # Close FTP connection
     ftp_server.quit()
-
+    st.session_state.step = 1
     # Return downloaded files
     return docx_files["template.docx"]
 # Use a session state flag to control cache invalidation
@@ -90,14 +53,6 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
     return href
 
-def format_eu_number(value):
-    # Convert input to integer
-    n = int(value)
-    # Format using Python's standard formatting
-    formatted = f"{n:,.2f}"
-    # Swap separators: , ↔ .
-    formatted = formatted.replace(",", "X").replace(".", ",").replace("X", ".")
-    return formatted
 if "step" not in st.session_state:
     st.session_state.step = 1
 if "cap3" not in st.session_state:
