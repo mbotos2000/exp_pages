@@ -36,43 +36,8 @@ def format_number(value: str) -> str:
     formatted = formatted.replace("X", ".")   # thousands separator
 
     return formatted
-def _hash(pwd: str) -> str:
-    return hashlib.sha256(pwd.encode("utf-8")).hexdigest()
 
-def _get_users():
-    try:
-        return st.secrets["users"]
-    except Exception:
-        return {}
 
-def require_login(title="Login"):
-    st.title(title)
-    if "auth" not in st.session_state:
-        st.session_state.auth = {"ok": False, "user": None, "name": None, "time": None}
-
-    if st.session_state.auth["ok"]:
-        with st.sidebar:
-            if st.button("Logout"):
-                st.session_state.auth = {"ok": False, "user": None, "name": None, "time": None}
-                st.rerun()
-        return st.session_state.auth["name"], st.session_state.auth["user"]
-
-    users = _get_users()
-    u = st.text_input("Username")
-    p = st.text_input("Password", type="password")
-    if st.button("Login"):
-        if u in users and _hash(p) == users[u]["hash"]:
-            st.session_state.auth = {"ok": True, "user": u, "name": users[u]["name"], "time": time.time()}
-            st.rerun()
-        else:
-            st.error("Invalid username or password")
-            st.stop()
-
-    st.stop()
-
-def float_to_eu(value: float) -> str:
-    formatted = f"{value:,.2f}"
-    return formatted.replace(",", "X").replace(".", ",").replace("X", ".")
 def load_ftp_file():
     # Establish FTP connection
     #ftp_server = ftplib.FTP("users.utcluj.ro", st.secrets['u'], st.secrets['p'])
@@ -116,20 +81,9 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
     return href
 
-def format_eu_number(value):
-    # Convert input to integer
-    n = int(value)
-    # Format using Python's standard formatting
-    formatted = f"{n:,.2f}"
-    # Swap separators: , ↔ .
-    formatted = formatted.replace(",", "X").replace(".", ",").replace("X", ".")
-    return formatted
 if "step" not in st.session_state:
     st.session_state.step = 1
-if "cap3" not in st.session_state:
-    st.session_state.cap3 = 1
-if "cap3i" not in st.session_state:
-    st.session_state.cap3i = ''
+
 if "note" not in st.session_state:
     st.session_state.note = ''
 st.set_page_config(page_title="Exp_oferte",
@@ -144,7 +98,7 @@ for key in ["val_ET"]:
     st.session_state.setdefault(key, 0.0)
 for key in ["zimax_et","zimin_et","nr_cladiri"]:
     st.session_state.setdefault(key, int(60.0))
-keys_none=['cap2','cap3','cap4','resetare' ,'file','cond',"1_1","2_1","3_1","4_1","5_1"]
+keys_none=['resetare' ,'file','cond']
 
 for key in keys_none:
     st.session_state.setdefault(key, None)
@@ -195,9 +149,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.write(' Expertiză tehnică exigența A1/A2')
                 st.text_area('Denumire obiectiv pentru care se face expertiza', key='den_obiectiv')
                 options = ["−	Planuri și secțiuni existente (releveu structural) și propuse.","−	Studiu geotehnic care să conțină caracteristicile geotehnice ale terenului și date despre fundațiile existente prin dezvelirea fundațiilor – conform normelor legale în vigoare - NP 074-2022; Realizarea dezvelirilor nu face obiectul prezentei oferte și intră în sarcina beneficiarului.","−	Cartea Tehnică a construcției (documentație tehnică de proiectare și execuție). Alternativ, în funcție de calitatea și cantitatea documentației tehnice disponibile, este posibil să fie necesare investigații prin sondaje la elementele construcției. Pozițiile și numărul sondajelor necesare se vor stabili în urma inspecției tehnice a obiectivului. Realizarea sondajelor nu face obiectul prezentei oferte și intră în sarcina beneficiarului."]
-                selected = st.multiselect(
-                             "Ce va contine documentatia?",
-                              options,default=options)
+                selected = st.multiselect("Ce va contine documentatia?",options,default=options)
                 st.write("Ai selectat:", selected)
                 st.session_state.documente="\n".join(selected)
                 try:
