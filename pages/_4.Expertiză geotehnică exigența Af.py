@@ -81,14 +81,7 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
     return href
 
-def format_eu_number(value):
-    # Convert input to integer
-    n = int(value)
-    # Format using Python's standard formatting
-    formatted = f"{n:,.2f}"
-    # Swap separators: , ↔ .
-    formatted = formatted.replace(",", "X").replace(".", ",").replace("X", ".")
-    return formatted
+
 if "step" not in st.session_state:
     st.session_state.step = 1
 if "cap3" not in st.session_state:
@@ -124,7 +117,6 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
 
   st.title("Generare oferta")
   st.write('{:%d-%b-%Y}'.format(date.today()))
-  
 
   with st.form('Inregistrare cerere'):
     st.header('Inregistrare cerere')
