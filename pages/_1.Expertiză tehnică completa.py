@@ -213,11 +213,11 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       except:
        st.session_state["val_dezv_8"]=0.00
       st.session_state["total1"]=float(st.session_state["val_ET"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_3d"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_rel"].replace(".", "").replace(",", "."))+ float(st.session_state["val_inc_nd"].replace(".", "").replace(",", "."))+float(st.session_state["val_bet"].replace(".", "").replace(",", "."))+float(st.session_state["val_geo"].replace(".", "").replace(",", "."))+st.session_state["val_dezv_8"]
-      st.session_state["total2"]=float(st.session_state["val_et_finisaje"].replace(".", "").replace(",", "."))+float(st.session_state["val_rel_struct"].replace(".", "").replace(",", "."))+float(st.session_state["val_et_actualizat"].replace(".", "").replace(",", "."))
-      st.session_state["total"]=st.session_state["total1"]+st.session_state["total2"]
+      #st.session_state["total2"]=float(st.session_state["val_et_finisaje"].replace(".", "").replace(",", "."))+float(st.session_state["val_rel_struct"].replace(".", "").replace(",", "."))+float(st.session_state["val_et_actualizat"].replace(".", "").replace(",", "."))
+      st.session_state["total"]=st.session_state["total1"]#+st.session_state["total2"]
       st.session_state["val_dezv_8"]=float_to_eu(st.session_state["val_dezv_8"])
       st.session_state["total1"]=float_to_eu(st.session_state["total1"])
-      st.session_state["total2"]=float_to_eu(st.session_state["total2"])
+      #st.session_state["total2"]=float_to_eu(st.session_state["total2"])
       st.session_state["total"]=float_to_eu(st.session_state["total"])
       keys_to_merge=["val_inc_nd","val_ET","val_bet","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
                     "nr_contract","data_contract","beneficiar","cerere","numec",
