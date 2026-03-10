@@ -144,7 +144,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  st.text_area('Obiect oferta',value=df.iloc[1, 0],key='numec')
                 except:
                  st.text_area('Obiect oferta',key='numec')
-                d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan"],
+                d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan","Dr. ing. Iulia Prodan","ing. Anamaria Avram", "ing. Marius Monda"],
 							 placeholder="Selecteaza din lista sau adauga persoana care va semna oferta",accept_new_options=True)
                 st.session_state['semnatura']=d
    
