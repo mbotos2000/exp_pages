@@ -119,7 +119,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  st.text_area('Obiect oferta',value=df.iloc[1, 0],key='numec')
                 except:
                  st.text_area('Obiect oferta',key='numec')
-                d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan"],
+                d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan","Dr. ing. Iulia Prodan","ing. Anamaria Avram", "ing. Marius Monda"],
 							 placeholder="Selecteaza din lista sau adauga persoana care va semna oferta",accept_new_options=True)
                 st.session_state['semnatura']=d
     if (st.session_state.step >= 3):
@@ -134,7 +134,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  st.text_area('Numar ore necesar verificare',value="8",key='ore_et')
                  st.selectbox('Durata de realizare a expertizei tehnice: ',range(1, 60),index=25,key='zimax_et')
                 with colB:
-                 st.text_area('Tarif verificare',value="375",key='tarif_et')                         
+                 st.text_area('Tarif verificare',value="450",key='tarif_et')                         
                  st.selectbox('Nu mai putin de: ',range(1, 59),key='zimin_et')
                 #st.selectbox('Termen valabilitate',range(1, 60),index=8, key='termen_val')  
 
@@ -146,9 +146,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  except:
                   st.text_area('2.1 Scan 3D și generare nor de puncte: ',  value=0.0,key='val_a_3d')
                  try:
-                  st.text_area('2.2 Elaborare releveu arhitectural al construcției : ',value=str(format_eu_number(df.iloc[113, 8])), key='val_a_rel')       
+                  st.text_area('2.2 Elaborare planuri si sectiuni de releveu : ',value=str(format_eu_number(df.iloc[113, 8])), key='val_a_rel')       
                  except:
-                  st.text_area('2.2 Elaborare releveu arhitectural al construcției : ', value=0.0, key='val_a_rel')       
+                  st.text_area('2.2 Elaborare planuri si sectiuni de releveu : ', value=0.0, key='val_a_rel')       
                 with col2:            
                  st.selectbox('Durata de realizare a releveului: ',range(1, 60),index=25,key='zimax_a')
                 with col3:            
