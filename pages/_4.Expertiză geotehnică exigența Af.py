@@ -142,7 +142,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  st.text_area('Obiect oferta',value=df.iloc[1, 0],key='numec')
                 except:
                  st.text_area('Obiect oferta',key='numec')
-                d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan"],
+                d=st.selectbox("Oferta va fi semnata de:", ["Dr. ing. Ovidiu Prodan","Dr. ing. Iulia Prodan","ing. Anamaria Avram", "ing. Marius Monda"],
 							 placeholder="Selecteaza din lista sau adauga persoana care va semna oferta",accept_new_options=True)
                 st.session_state['semnatura']=d
     
@@ -158,7 +158,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                  st.text_area('Numar ore necesar verificare',value="8",key='ore_et')
                  st.selectbox('Durata de realizare a expertizei tehnice: ',range(1, 60),index=25,key='zimax_et')
                 with colB:
-                 st.text_area('Tarif verificare',value="375",key='tarif_et')                         
+                 st.text_area('Tarif verificare',value="450",key='tarif_et')                         
                  st.selectbox('Nu mai putin de: ',range(1, int(st.session_state['zimax_et'])-1),key='zimin_et')
                 st.selectbox('Termen valabilitate',range(1, 60),index=8, key='termen_val')
     
