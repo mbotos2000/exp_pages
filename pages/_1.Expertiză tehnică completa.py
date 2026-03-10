@@ -184,8 +184,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.selectbox('Numarul minim de dezveliri: ',range(1, 60),index=8, key='nr_dezveliri')
                 st.selectbox('Durata de realizare a studiului geotehnic: ',range(1, 60),index=30, key='zimax_geo')
                 st.selectbox('Nu mai putin de: ',range(1, int(st.session_state['zimax_geo'])-1),key='zimin_geo')
-		
-    if (st.session_state.step >= 8):
+                st.selectbox('Termen predare: ',range(1, 60),index=20, key='termen_predare')
+                st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')		
+    if (st.session_state.step >= 15556):
                 try:
                  st.text_area(' Realizare lucrări de decopertare finisaje interioare : ',value=str(format_eu_number(df.iloc[121, 8])), key='val_et_finisaje') 
                 except:
@@ -205,7 +206,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.selectbox('Termen predare: ',range(1, 60),index=20, key='termen_predare')
                 st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')
    
-    if (st.session_state.step >= 9):	
+    if (st.session_state.step >= 8):	
       template=load_ftp_file()	  
       try:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
