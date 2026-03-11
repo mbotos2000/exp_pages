@@ -14,6 +14,9 @@ from difflib import get_close_matches
 import pickle
 import string
 from auth_simple import require_login
+def float_to_eu(value: float) -> str:
+    formatted = f"{value:,.2f}"
+    return formatted.replace(",", "X").replace(".", ",").replace("X", ".")
 def format_number(value: str) -> str:
     # 1. Trim spaces
     v = value.strip()
@@ -251,10 +254,10 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["total1"]=float(st.session_state["val_ET"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_3d"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_rel"].replace(".", "").replace(",", "."))+ float(st.session_state["val_inc_nd"].replace(".", "").replace(",", "."))+float(st.session_state["val_bet"].replace(".", "").replace(",", "."))+float(st.session_state["val_geo"].replace(".", "").replace(",", "."))+st.session_state["val_dezv_8"]
       #st.session_state["total2"]=float(st.session_state["val_et_finisaje"].replace(".", "").replace(",", "."))+float(st.session_state["val_rel_struct"].replace(".", "").replace(",", "."))+float(st.session_state["val_et_actualizat"].replace(".", "").replace(",", "."))
       st.session_state["total"]=st.session_state["total1"]#+st.session_state["total2"]
-      st.session_state["val_dezv_8"]=format_number(st.session_state["val_dezv_8"])
-      st.session_state["total1"]=format_number(st.session_state["total1"])
+      st.session_state["val_dezv_8"]=float_to_eu(st.session_state["val_dezv_8"])
+      st.session_state["total1"]=float_to_eu(st.session_state["total1"])
       #st.session_state["total2"]=float_to_eu(st.session_state["total2"])
-      st.session_state["total"]=format_number(st.session_state["total"])
+      st.session_state["total"]=float_to_eu(st.session_state["total"])
       for key in ["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat", "tarif_et","val_rel","val_dezv_8"]:
        try:
          st.session_state[key]=format_number(st.session_state[key])
