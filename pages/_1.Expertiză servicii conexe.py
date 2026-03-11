@@ -256,11 +256,12 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["total"]=st.session_state["total1"]#+st.session_state["total2"]
       st.session_state["val_dezv_8"]=float_to_eu(st.session_state["val_dezv_8"])
       st.session_state["total1"]=float_to_eu(st.session_state["total1"])
+      st.session_state["total12"]=float_to_eu(st.session_state["total12"])
       #st.session_state["total2"]=float_to_eu(st.session_state["total2"])
       st.session_state["total"]=float_to_eu(st.session_state["total"])
       for key in ["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat", "tarif_et","val_rel","val_dezv_8"]:
        try:
-         st.session_state[key]=format_number(st.session_state[key])
+         st.session_state[key]=float_to_eu(float(st.session_state[key]))
        except:
          pass
       keys_to_merge=["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
