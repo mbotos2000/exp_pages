@@ -185,9 +185,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 except:
                  st.text_area(' Studiu Geotehnic : ',  value=0.0, key='val_geo') 
                 try:
-                 st.text_area(' Dezveliri : ',value=str(format_eu_number(df.iloc[119, 8])), key='val_dezveliri')
+                 st.text_area(' Pret unitar dezveliri : ',value=str(format_eu_number(df.iloc[119, 8])), key='val_dezveliri')
                 except:
-                 st.text_area(' Dezveliri : ', value=0,key='val_dezveliri')
+                 st.text_area(' Pret unitar dezveliri : ', value=0,key='val_dezveliri')
                 
                 st.selectbox('Numarul minim de dezveliri: ',range(1, 60),index=8, key='nr_dezveliri')
                 st.selectbox('Durata de realizare a studiului geotehnic: ',range(1, 60),index=30, key='zimax_geo')
