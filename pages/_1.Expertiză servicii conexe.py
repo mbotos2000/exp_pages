@@ -72,13 +72,13 @@ st.set_page_config(page_title="Exp_oferte",
 for key in ["val_inc_nd","nr_contract","data_contract","beneficiar","cerere","numec","val_ET","ore_et","tarif_et","zimax_et","zimin_et",
     "val_a_3d","val_a_rel","zimax_a","zimin_a","zimax_IND","zimin_IND","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
     "zimax_geo","zimin_geo","val_et_finisaje","val_rel_struct","val_et_actualizat","zimin_rel","zimax_et_rel","termen_predare","termen_val","semnatura",
-		   "total1","total2","total","adresant","mobilizare","constructie&adresa","gen",'den_obiectiv','adresa']:
+		   "total1","total2","total","adresant","mobilizare","constructie&adresa","gen",'den_obiectiv','adresa',"val_bet_2","zimax_mat","zimin_mat"]:
     st.session_state.setdefault(key, '')
 for key in ["val_inc_nd","val_ET","val_a_3d","val_a_rel","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
-    "val_et_finisaje","val_rel_struct","val_et_actualizat","total1","total2","total"]:
+    "val_et_finisaje","val_rel_struct","val_et_actualizat","total1","total2","total","val_bet_2"]:
     st.session_state.setdefault(key, 0.0)
 for key in ["zimax_et","zimin_et","zimax_a","zimin_a",
-    "zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_rel","zimin_et_rel","zimax_et_rel","nr_cladiri"]:
+    "zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_rel","zimin_et_rel","zimax_et_rel","nr_cladiri","zimin_mat","zimax_mat"]:
     st.session_state.setdefault(key, int(60.0))
 keys_none=['cap2','cap3','cap4','resetare' ,'file','cond',"1_1","2_1","3_1","4_1","5_1"]
 st.session_state["val_dezv_8"]="0.00"
@@ -170,10 +170,15 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 6):
                 st.write('4. Teste pe betonul pus în operă prin extragere și testare carote ')
                 try:
-                 st.text_area('4. Teste pe betonul pus în operă  : ',value=str(format_eu_number(df.iloc[118, 8])), key='val_bet')
+                 st.text_area('4.1.	Varianta V01 – Extragere și testare carote  : ',value=str(format_eu_number(df.iloc[118, 8])), key='val_bet')
                 except:
-                 st.text_area('4. Teste pe betonul pus în operă  : ',  value=0.0,key='val_bet')
-                
+                 st.text_area('4.1.	Varianta V01 – Extragere și testare carote : ',  value=0.0,key='val_bet')
+                try:
+                 st.text_area('4.2.	Varianta V02 – Determinarea rezistenței betonului prin metoda combinată (nedistructiv) : ',value=str(format_eu_number(df.iloc[118, 8])), key='val_bet_2')
+                except:
+                 st.text_area('4.2.	Varianta V02 – Determinarea rezistenței betonului prin metoda combinată (nedistructiv) : ',  value=0.0,key='val_bet_2')
+                st.selectbox('Durata de realizare a testelor pe materiale: ',range(1, 60), index=25,key='zimax_mat')
+                st.selectbox('Nu mai putin de: ',range(1,int(st.session_state['zimax_mat'])-1),key='zimin_mat')                
     if (st.session_state.step >= 7):
                 st.write('5. Studiu Geotehnic și dezveliri la nivelul fundațiilor')
                 try:
@@ -232,10 +237,10 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["total1"]=float_to_eu(st.session_state["total1"])
       #st.session_state["total2"]=float_to_eu(st.session_state["total2"])
       st.session_state["total"]=float_to_eu(st.session_state["total"])
-      keys_to_merge=["val_inc_nd","val_ET","val_bet","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
+      keys_to_merge=["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
                     "nr_contract","data_contract","beneficiar","cerere","numec",
                     "ore_et","tarif_et",
-					 "zimax_et","zimin_et","zimax_a","zimin_a","zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_et_rel","zimax_rel","zimin_et_rel",
+					 "zimax_mat","zimin_mat","zimax_et","zimin_et","zimax_a","zimin_a","zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_et_rel","zimax_rel","zimin_et_rel",
                      "nr_dezveliri","val_dezv_8",
                      "termen_predare","termen_val","semnatura",
 					 "total1","total2","total", "adresant",'gen','den_obiectiv']
