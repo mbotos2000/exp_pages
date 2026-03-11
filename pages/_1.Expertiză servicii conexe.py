@@ -218,13 +218,13 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 8):
       template,_,_,_,_=load_ftp_file()	 
       if st.session_state["val_geo"]=='0.0' or st.session_state["val_geo"]==None:
-		 _,_,template,_,_=load_ftp_file()	
+        _,_,template,_,_=load_ftp_file()	
       if st.session_state["val_a_rel"]=='0.0' or st.session_state["val_a_rel"]==None:
-		 _,template,_,_,_=load_ftp_file()
+        _,template,_,_,_=load_ftp_file()
       if st.session_state["val_inc_nd"]=='0.0' or st.session_state["val_inc_nd"]==None:
-		 _,_,_,template,_=load_ftp_file()
+       _,_,_,template,_=load_ftp_file()
       if st.session_state["val_bet"]=='0.0' or st.session_state["val_bet"]==None:
-		 _,_,_,_,template=load_ftp_file()
+       _,_,_,_,template=load_ftp_file()
       try:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
       except:
