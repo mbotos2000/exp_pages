@@ -74,7 +74,7 @@ for key in ["val_inc_nd","nr_contract","data_contract","beneficiar","cerere","nu
     "zimax_geo","zimin_geo","val_et_finisaje","val_rel_struct","val_et_actualizat","zimin_rel","zimax_et_rel","termen_predare","termen_val","semnatura",
 		   "total12","total1","total2","total","adresant","mobilizare","constructie&adresa","gen",'den_obiectiv','adresa',"val_bet_2","zimax_mat","zimin_mat"]:
     st.session_state.setdefault(key, '')
-for key in ["val_inc_nd","val_ET","val_a_3d","val_a_rel","val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
+for key in ["val_inc_nd","val_ET","val_a_3d","val_a_rel","val_rel""val_bet","val_geo","val_dezveliri","nr_dezveliri","val_dezv_8"
     "val_et_finisaje","val_rel_struct","val_et_actualizat","total1","total2","total","val_bet_2"]:
     st.session_state.setdefault(key, 0.0)
 for key in ["zimax_et","zimin_et","zimax_a","zimin_a",
@@ -128,7 +128,6 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.session_state['semnatura']=d
     if (st.session_state.step >= 3):
                 st.write('1. Expertiză tehnică')
-
                 try:
                  st.text_area('Valoare expertiza tehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
                 except:
@@ -230,7 +229,8 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
       except:
        st.session_state["val_dezv_8"]=0.00
-      st.session_state["total12"]=float(st.session_state["val_ET"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_3d"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_rel"].replace(".", "").replace(",", "."))+ float(st.session_state["val_inc_nd"].replace(".", "").replace(",", "."))+float(st.session_state["val_bet_2"].replace(".", "").replace(",", "."))+float(st.session_state["val_geo"].replace(".", "").replace(",", "."))+st.session_state["val_dezv_8"]
+	  st.session_state["val_rel"]=float(st.session_state["val_a_3d"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_rel"].replace(".", "").replace(",", "."))
+	  st.session_state["total12"]=float(st.session_state["val_ET"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_3d"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_rel"].replace(".", "").replace(",", "."))+ float(st.session_state["val_inc_nd"].replace(".", "").replace(",", "."))+float(st.session_state["val_bet_2"].replace(".", "").replace(",", "."))+float(st.session_state["val_geo"].replace(".", "").replace(",", "."))+st.session_state["val_dezv_8"]
       st.session_state["total1"]=float(st.session_state["val_ET"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_3d"].replace(".", "").replace(",", "."))+float(st.session_state["val_a_rel"].replace(".", "").replace(",", "."))+ float(st.session_state["val_inc_nd"].replace(".", "").replace(",", "."))+float(st.session_state["val_bet"].replace(".", "").replace(",", "."))+float(st.session_state["val_geo"].replace(".", "").replace(",", "."))+st.session_state["val_dezv_8"]
       #st.session_state["total2"]=float(st.session_state["val_et_finisaje"].replace(".", "").replace(",", "."))+float(st.session_state["val_rel_struct"].replace(".", "").replace(",", "."))+float(st.session_state["val_et_actualizat"].replace(".", "").replace(",", "."))
       st.session_state["total"]=st.session_state["total1"]#+st.session_state["total2"]
@@ -240,7 +240,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["total"]=float_to_eu(st.session_state["total"])
       keys_to_merge=["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
                     "nr_contract","data_contract","beneficiar","cerere","numec",
-                    "ore_et","tarif_et",
+                    "ore_et","tarif_et","val_rel",
 					 "zimax_mat","zimin_mat","zimax_et","zimin_et","zimax_a","zimin_a","zimax_IND","zimin_IND","zimax_geo","zimin_geo","zimin_rel","zimax_et_rel","zimax_rel","zimin_et_rel",
                      "nr_dezveliri","val_dezv_8",
                      "termen_predare","termen_val","semnatura",
