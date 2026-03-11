@@ -39,7 +39,11 @@ def load_ftp_file():
     ftp_server.quit()
     st.session_state.step = 1
     # Return downloaded files
-    return (docx_files["template.docx"],["template_fMAT.docx"],["template_fGEO.docx"],["template_FND.docx"],["template-gND.docx"]
+    return (docx_files["template.docx"],
+			docx_files["template_fMAT.docx"],
+			docx_files["template_fGEO.docx"],
+			docx_files["template_FND.docx"],
+			docx_files["template-gND.docx"])
 # Use a session state flag to control cache invalidation
 name, user = require_login("🔐 App Login")
 st.title("Dashboard")
