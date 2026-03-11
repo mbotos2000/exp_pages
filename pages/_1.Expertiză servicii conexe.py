@@ -30,7 +30,7 @@ def load_ftp_file():
     
     # Download DOCX templates
     docx_files = {}
-    for filename in ["template.docx","template_fMAT.docx","template_fGEO.docx","template_FND.docx","template-gND.docx"]:
+    for filename in ["template.docx","template_fREL.docx","template_fGEO.docx","template_FND.docx","template-gND.docx"]:
         file_data = BytesIO()
         ftp_server.retrbinary(f"RETR {filename}", file_data.write)
         file_data.seek(0)  # Reset file pointer to the start
@@ -40,7 +40,7 @@ def load_ftp_file():
     st.session_state.step = 1
     # Return downloaded files
     return (docx_files["template.docx"],
-			docx_files["template_fMAT.docx"],
+			docx_files["template_fREL.docx"],
 			docx_files["template_fGEO.docx"],
 			docx_files["template_FND.docx"],
 			docx_files["template-gND.docx"])
@@ -209,9 +209,18 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 st.selectbox('Nu mai putin de: ',range(1, int(st.session_state['zimax_et_rel'])-1),key='zimin_et_rel')
                 st.selectbox('Termen predare: ',range(1, 60),index=20, key='termen_predare')
                 st.selectbox('Termen valabilitate oferta ',range(1, 60),index=8, key='termen_val')
-   
-    if (st.session_state.step >= 8):	
-      template=load_ftp_file()	  
+  #(docx_files["template.docx"],docx_files["template_fREL.docx"],docx_files["template_fGEO.docx"],
+			#docx_files["template_FND.docx"],docx_files["template_fMAT.docx"]) 
+    if (st.session_state.step >= 8):
+      template,_,_,_,_=load_ftp_file()	 
+      if st.session_state["val_geo"]=='0.0' or st.session_state["val_geo"]==None:
+		 _,_,template,_,_=load_ftp_file()	
+      if st.session_state["val_a_rel"]=='0.0' or st.session_state["val_a_rel"]==None:
+		 _,template,_,_,_=load_ftp_file()
+      if st.session_state["val_inc_nd"]=='0.0' or st.session_state["val_inc_nd"]==None:
+		 _,_,_,template,_=load_ftp_file()
+      if st.session_state["val_bet"]=='0.0' or st.session_state["val_bet"]==None:
+		 _,_,_,_,template=load_ftp_file()
       try:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
       except:
