@@ -236,19 +236,23 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
   #(docx_files["template.docx"],docx_files["template_fREL.docx"],docx_files["template_fGEO.docx"],
 			#docx_files["template_FND.docx"],docx_files["template_fMAT.docx"]) 
     if (st.session_state.step >= 8):
-      for key in [val_inc_nd_,val_ET_,val_bet_,val_bet_2_,val_geo_,val_dezveliri_,val_a_3d_,val_a_rel_]:
-       try:
-         st.session_state[str(key):-1]=format_number(str(key))
-       except:
-         st.write("Nu ma scris "+str(key))
+      st.session_state["val_inc_nd"]=format_number(val_inc_nd_)
+      st.session_state["val_ET"]=format_number(val_ET_)
+      st.session_state["val_bet"]=format_number(val_bet_)
+      st.session_state["val_bet_2"]=format_number(val_bet_2_)
+      st.session_state["val_geo"]=format_number(val_geo_)
+      st.session_state["val_dezveliri"]=format_number(val_dezveliri_)
+      st.session_state["val_a_3d"]=format_number(val_a_3d_)
+      st.session_state["val_a_rel"]=format_number(val_a_rel_)
+
       template,_,_,_,_=load_ftp_file()	 
-      if st.session_state["val_geo"]=='0,00' or st.session_state["val_geo"]==None:
+      if st.session_state["val_geo_"]=='0.0' or st.session_state["val_geo_"]==None:
         _,_,template,_,_=load_ftp_file()	
-      if st.session_state["val_a_rel"]=='0,00' or st.session_state["val_a_rel"]==None:
+      if st.session_state["val_a_rel"]=='0.0' or st.session_state["val_a_rel_"]==None:
         _,template,_,_,_=load_ftp_file()
-      if st.session_state["val_inc_nd"]=='0,00' or st.session_state["val_inc_nd"]==None:
+      if st.session_state["val_inc_nd_"]=='0.0' or st.session_state["val_inc_nd_"]==None:
        _,_,_,template,_=load_ftp_file()
-      if st.session_state["val_bet"]=='0,=0' or st.session_state["val_bet"]==None:
+      if st.session_state["val_bet_"]=='0.0' or st.session_state["val_bet"]==None:
        _,_,_,_,template=load_ftp_file()
       try:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
