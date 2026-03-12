@@ -268,6 +268,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["total12"]=format_number(str(st.session_state["total12"]))
       #st.session_state["total2"]=float_to_eu(st.session_state["total2"])
       st.session_state["total"]=format_number(str(st.session_state["total"]))
+      st.session_state["val_rel"]=format_number(str(st.session_state["val_rel"]))
 
       keys_to_merge=["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
                     "nr_contract","data_contract","beneficiar","cerere","numec",
