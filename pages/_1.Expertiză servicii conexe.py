@@ -149,9 +149,9 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 3):
                 st.write('1. Expertiză tehnică')
                 try:
-                 st.text_area('Valoare expertiza tehnica',value=str(format_eu_number(df.iloc[113, 8])), key='val_ET')
+                 val_ET_=st.text_area('Valoare expertiza tehnica',value=str(format_eu_number(df.iloc[113, 8])))
                 except:
-                 st.text_area('Valoare expertiza tehnica', value=0.0, key='val_ET')                
+                 val_ET_=st.text_area('Valoare expertiza tehnica', value=0.0)                
                 colA, colB = st.columns(2)
                 with colA:
                  st.text_area('Numar ore necesar verificare',value="8",key='ore_et')
@@ -165,13 +165,13 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
                 col1, col2, col3 = st.columns(3)
                 with col1:            
                  try:
-                  st.text_area('2.1 Scan 3D și generare nor de puncte: ',value=str(format_eu_number(df.iloc[115, 8])), key='val_a_3d')
+                  val_a_3d_=st.text_area('2.1 Scan 3D și generare nor de puncte: ',value=str(format_eu_number(df.iloc[115, 8])))
                  except:
-                  st.text_area('2.1 Scan 3D și generare nor de puncte: ',  value=0.0,key='val_a_3d')
+                  val_a_3d_=st.text_area('2.1 Scan 3D și generare nor de puncte: ',  value=0.0)
                  try:
-                  st.text_area('2.2 Elaborare planuri si sectiuni de releveu : ',value=str(format_eu_number(df.iloc[113, 8])), key='val_a_rel')       
+                  val_a_rel_=st.text_area('2.2 Elaborare planuri si sectiuni de releveu : ',value=str(format_eu_number(df.iloc[113, 8])))       
                  except:
-                  st.text_area('2.2 Elaborare planuri si sectiuni de releveu : ', value=0.0, key='val_a_rel')       
+                  val_a_rel_=st.text_area('2.2 Elaborare planuri si sectiuni de releveu : ', value=0.0)       
                 with col2:            
                  st.selectbox('Durata de realizare a releveului: ',range(1, 60),index=25,key='zimax_a')
                 with col3:            
@@ -180,34 +180,34 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 5):		
                 st.write('3. Investigații prin încercări nedistructive la elementele structurale în vederea determinării modului de alcătuire și armare ')
                 try:
-                 st.text_area('3. Investigații prin încercări nedistructive : ',value=str(format_eu_number(df.iloc[115, 8])), key='val_inc_nd') 
+                 val_inc_nd_=st.text_area('3. Investigații prin încercări nedistructive : ',value=str(format_eu_number(df.iloc[115, 8]))) 
                 except:
-                 st.text_area('3. Investigații prin încercări nedistructive : ', value=0.0,key='val_inc_nd')
+                 val_inc_nd_=st.text_area('3. Investigații prin încercări nedistructive : ', value=0.0)
                 st.selectbox('Durata de realizare a incercarilor nedestructive: ',range(1, 60), index=25,key='zimax_IND')
                 st.selectbox('Nu mai putin de: ',range(1,int(st.session_state['zimax_IND'])-1),key='zimin_IND')
 		
     if (st.session_state.step >= 6):
                 st.write('4. Teste pe betonul pus în operă prin extragere și testare carote ')
                 try:
-                 st.text_area('4.1.	Varianta V01 – Extragere și testare carote  : ',value=str(format_eu_number(df.iloc[118, 8])), key='val_bet')
+                 val_bet_=st.text_area('4.1.	Varianta V01 – Extragere și testare carote  : ',value=str(format_eu_number(df.iloc[118, 8])))
                 except:
-                 st.text_area('4.1.	Varianta V01 – Extragere și testare carote : ',  value=0.0,key='val_bet')
+                 val_bet_=st.text_area('4.1.	Varianta V01 – Extragere și testare carote : ',  value=0.0)
                 try:
-                 st.text_area('4.2.	Varianta V02 – Determinarea rezistenței betonului prin metoda combinată (nedistructiv) : ',value=str(format_eu_number(df.iloc[118, 8])), key='val_bet_2')
+                 val_bet_2_=st.text_area('4.2.	Varianta V02 – Determinarea rezistenței betonului prin metoda combinată (nedistructiv) : ',value=str(format_eu_number(df.iloc[118, 8])))
                 except:
-                 st.text_area('4.2.	Varianta V02 – Determinarea rezistenței betonului prin metoda combinată (nedistructiv) : ',  value=0.0,key='val_bet_2')
+                 val_bet_2_=st.text_area('4.2.	Varianta V02 – Determinarea rezistenței betonului prin metoda combinată (nedistructiv) : ',  value=0.0)
                 st.selectbox('Durata de realizare a testelor pe materiale: ',range(1, 60), index=25,key='zimax_mat')
                 st.selectbox('Nu mai putin de: ',range(1,int(st.session_state['zimax_mat'])-1),key='zimin_mat')                
     if (st.session_state.step >= 7):
                 st.write('5. Studiu Geotehnic și dezveliri la nivelul fundațiilor')
                 try:
-                 st.text_area(' Studiu Geotehnic : ',value=str(format_eu_number(df.iloc[119, 8])), key='val_geo') 
+                 val_geo_=st.text_area(' Studiu Geotehnic : ',value=str(format_eu_number(df.iloc[119, 8]))) 
                 except:
-                 st.text_area(' Studiu Geotehnic : ',  value=0.0, key='val_geo') 
+                 val_geo_=st.text_area(' Studiu Geotehnic : ',  value=0.0) 
                 try:
-                 st.text_area(' Pret unitar dezveliri : ',value=str(format_eu_number(df.iloc[119, 8])), key='val_dezveliri')
+                 val_dezveliri_=st.text_area(' Pret unitar dezveliri : ',value=str(format_eu_number(df.iloc[119, 8])))
                 except:
-                 st.text_area(' Pret unitar dezveliri : ', value=0,key='val_dezveliri')
+                 val_dezveliri_=st.text_area(' Pret unitar dezveliri : ', value=0)
                 
                 st.selectbox('Numarul minim de dezveliri: ',range(1, 60),index=8, key='nr_dezveliri')
                 st.selectbox('Durata de realizare a studiului geotehnic: ',range(1, 60),index=30, key='zimax_geo')
@@ -236,14 +236,19 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
   #(docx_files["template.docx"],docx_files["template_fREL.docx"],docx_files["template_fGEO.docx"],
 			#docx_files["template_FND.docx"],docx_files["template_fMAT.docx"]) 
     if (st.session_state.step >= 8):
+      for key in [val_inc_nd_,val_ET_,val_bet_,val_bet_2_,val_geo_,val_dezveliri_,val_a_3d_,val_a_rel_]:
+       try:
+         st.session_state[str(key):-1]=format_number(key)
+       except:
+         st.write("Nu ma scris "+str(key))
       template,_,_,_,_=load_ftp_file()	 
-      if st.session_state["val_geo"]=='0.0' or st.session_state["val_geo"]==None:
+      if st.session_state["val_geo"]=='0,00' or st.session_state["val_geo"]==None:
         _,_,template,_,_=load_ftp_file()	
-      if st.session_state["val_a_rel"]=='0.0' or st.session_state["val_a_rel"]==None:
+      if st.session_state["val_a_rel"]=='0,00' or st.session_state["val_a_rel"]==None:
         _,template,_,_,_=load_ftp_file()
-      if st.session_state["val_inc_nd"]=='0.0' or st.session_state["val_inc_nd"]==None:
+      if st.session_state["val_inc_nd"]=='0,00' or st.session_state["val_inc_nd"]==None:
        _,_,_,template,_=load_ftp_file()
-      if st.session_state["val_bet"]=='0.0' or st.session_state["val_bet"]==None:
+      if st.session_state["val_bet"]=='0,=0' or st.session_state["val_bet"]==None:
        _,_,_,_,template=load_ftp_file()
       try:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
@@ -259,11 +264,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["total12"]=format_number(str(st.session_state["total12"]))
       #st.session_state["total2"]=float_to_eu(st.session_state["total2"])
       st.session_state["total"]=format_number(str(st.session_state["total"]))
-      for key in ["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat", "tarif_et","val_rel",]:
-       try:
-         st.session_state[key]=format_number(str(st.session_state[key]))
-       except:
-         st.write("Nu ma scris "+key)
+
       keys_to_merge=["val_inc_nd","val_ET","val_bet","val_bet_2","val_geo","val_dezveliri","val_a_3d","val_a_rel", "val_et_finisaje","val_rel_struct","val_et_actualizat",
                     "nr_contract","data_contract","beneficiar","cerere","numec",
                     "ore_et","tarif_et","val_rel",
