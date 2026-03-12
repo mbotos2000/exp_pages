@@ -238,7 +238,7 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
     if (st.session_state.step >= 8):
       for key in [val_inc_nd_,val_ET_,val_bet_,val_bet_2_,val_geo_,val_dezveliri_,val_a_3d_,val_a_rel_]:
        try:
-         st.session_state[str(key):-1]=format_number(key)
+         st.session_state[str(key):-1]=format_number(str(key))
        except:
          st.write("Nu ma scris "+str(key))
       template,_,_,_,_=load_ftp_file()	 
