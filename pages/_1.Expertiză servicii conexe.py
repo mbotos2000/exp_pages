@@ -246,13 +246,13 @@ if st.session_state['file']!=None or st.session_state['cond']!=None:
       st.session_state["val_a_rel"]=format_number(val_a_rel_)
 
       template,_,_,_,_=load_ftp_file()	 
-      if st.session_state["val_geo"]=='0.0' or st.session_state["val_geo"]==None:
+      if st.session_state["val_geo"]=='0,00' or st.session_state["val_geo"]==None:
         _,_,template,_,_=load_ftp_file()	
-      if st.session_state["val_a_rel"]=='0.0' or st.session_state["val_a_rel"]==None:
+      if st.session_state["val_a_rel"]=='0,00' or st.session_state["val_a_rel"]==None:
         _,template,_,_,_=load_ftp_file()
-      if st.session_state["val_inc_nd"]=='0.0' or st.session_state["val_inc_nd"]==None:
+      if st.session_state["val_inc_nd"]=='0,00' or st.session_state["val_inc_nd"]==None:
        _,_,_,template,_=load_ftp_file()
-      if st.session_state["val_bet"]=='0.0' or st.session_state["val_bet"]==None:
+      if st.session_state["val_bet"]=='0,00' or st.session_state["val_bet"]==None:
        _,_,_,_,template=load_ftp_file()
       try:
        st.session_state["val_dezv_8"]=int(st.session_state["nr_dezveliri"])*float(st.session_state["val_dezveliri"].replace(".", "").replace(",", "."))
